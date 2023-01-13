@@ -1,24 +1,20 @@
-import java.util.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 fun main() {
-    val sc = Scanner(System.`in`)
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val (a, b) = br.readLine().split(" ")
+    var ans = a.length
 
-    var a = sc.next()
-    var b = sc.next()
+    for (i in 0..(b.length - a.length)) {
+        var cnt = 0
 
-    var result = a.length
-
-    for (i in 0 until  b.length-a.length + 1) {
-        var tmp = 0
-
-        for (j in 0 until a.length) {
-            if (a[j] != b[j+i]) {
-                tmp++
-            }
+        for (j in a.indices) {
+            if (a[j] != b[j+i]) cnt++
         }
-        if (result > tmp) {
-            result = tmp
+        if (ans > cnt) {
+            ans = cnt
         }
     }
-    println(result)
+    println(ans)
 }
